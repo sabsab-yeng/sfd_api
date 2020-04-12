@@ -2,61 +2,56 @@ import 'package:flutter/material.dart';
 import 'package:sfd_api/models/albums.dart';
 import 'package:sfd_api/services/api_service.dart';
 
-class PostAlbumPage extends StatefulWidget {
+class PutAlbumPage extends StatefulWidget {
   @override
-  _PostAlbumPageState createState() => _PostAlbumPageState();
+  _PutAlbumPageState createState() => _PutAlbumPageState();
 }
 
-class _PostAlbumPageState extends State<PostAlbumPage> {
+class _PutAlbumPageState extends State<PutAlbumPage> {
   final TextEditingController _controller = TextEditingController();
-
-  Future<Albums> _futureAlbum;
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  Future<Albums> _futureUpdate;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Post/Insert Albums"),
+        title: Text("Put/Update Album"),
       ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(20),
-          child: (_futureAlbum == null)
+          child: (_futureUpdate == null)
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     TextFormField(
                       controller: _controller,
-                      decoration: InputDecoration(hintText: 'title'),
+                      decoration: InputDecoration(hintText: "title"),
                     ),
                     SizedBox(
                       height: 40,
                     ),
                     RaisedButton(
-                      child: Text('Post new Data'),
+                      child: Text("Put/ Update"),
                       onPressed: () {
                         setState(() {
-                          _futureAlbum = insertAlbum(_controller.text);
+                          _futureUpdate = putedAlbum(_controller.text);
                         });
                       },
-                    )
+                    ),
                   ],
                 )
               : FutureBuilder<Albums>(
-                  future: _futureAlbum,
+                  future: _futureUpdate,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return Text(snapshot.data.title);
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     }
-                    return CircularProgressIndicator();
+                    return CircularProgressIndicator(
+                      backgroundColor: Colors.pink,
+                    );
                   },
                 ),
         ),

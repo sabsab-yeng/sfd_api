@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sfd_api/ui/albums/album_page.dart';
 import 'package:sfd_api/ui/albums/albums_page.dart';
+import 'package:sfd_api/ui/albums/put_album_page.dart';
 
+import 'albums/delete_album_page.dart';
 import 'albums/post_album_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,11 +38,11 @@ class _HomePageState extends State<HomePage> {
                 },),
                 SizedBox(height: 40,),
                  FlatButton(child: Text("PUT"),onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> AlbumPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> PutAlbumPage()));
                 },),
                 SizedBox(height: 40,),
                  FlatButton(child: Text("Delete"),onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> AlbumPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> DeleteAlbumPage()));
                 },),
                 SizedBox(height: 40,),
               ],
