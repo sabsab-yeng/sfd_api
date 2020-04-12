@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sfd_api/models/albums.dart';
 import 'package:sfd_api/services/api_service.dart';
+import 'package:sfd_api/ui/albums/album_detail.dart';
 
 class AlbumsPage extends StatefulWidget {
   @override
@@ -37,6 +38,16 @@ class _AlbumsPageState extends State<AlbumsPage> {
                       leading: CircleAvatar(
                         backgroundColor: Colors.pinkAccent,
                       ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AlbumDetailPage(
+                              title: data[index].title,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
