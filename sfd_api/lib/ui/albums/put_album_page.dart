@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sfd_api/models/albums.dart';
 import 'package:sfd_api/services/api_service.dart';
+import 'package:sfd_api/widgets/button_widget.dart';
 
 class PutAlbumPage extends StatefulWidget {
   @override
@@ -31,13 +32,13 @@ class _PutAlbumPageState extends State<PutAlbumPage> {
                     SizedBox(
                       height: 40,
                     ),
-                    RaisedButton(
-                      child: Text("Put/ Update"),
+                    ButtonWidget(
                       onPressed: () {
                         setState(() {
                           _futureUpdate = putedAlbum(_controller.text);
                         });
                       },
+                      title: "Put/ Update",
                     ),
                   ],
                 )
@@ -49,8 +50,10 @@ class _PutAlbumPageState extends State<PutAlbumPage> {
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     }
-                    return CircularProgressIndicator(
-                      backgroundColor: Colors.pink,
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.pink,
+                      ),
                     );
                   },
                 ),

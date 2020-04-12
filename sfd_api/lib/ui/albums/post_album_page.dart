@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sfd_api/models/albums.dart';
 import 'package:sfd_api/services/api_service.dart';
+import 'package:sfd_api/widgets/button_widget.dart';
 
 class PostAlbumPage extends StatefulWidget {
   @override
@@ -38,14 +39,14 @@ class _PostAlbumPageState extends State<PostAlbumPage> {
                     SizedBox(
                       height: 40,
                     ),
-                    RaisedButton(
-                      child: Text('Post new Data'),
+                    ButtonWidget(
+                      title: "Post new Data",
                       onPressed: () {
                         setState(() {
                           _futureAlbum = insertAlbum(_controller.text);
                         });
                       },
-                    )
+                    ),
                   ],
                 )
               : FutureBuilder<Albums>(
@@ -56,7 +57,9 @@ class _PostAlbumPageState extends State<PostAlbumPage> {
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     }
-                    return CircularProgressIndicator();
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
                   },
                 ),
         ),
